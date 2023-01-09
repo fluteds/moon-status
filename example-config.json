@@ -1,0 +1,9 @@
+{
+    "api_key": "",
+    "lat": "",
+    "lon": "",
+    "city": "",
+    "exclude": "minutely, hourly",
+    "discord_token": ""
+  }
+  
