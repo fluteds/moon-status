@@ -1,13 +1,7 @@
-# Used to make calls to the Discord API
 import requests
-
-# Used to read the config file
 import json
-
-# Used to display the last update time
 from datetime import datetime
 
-# Read the config file
 with open("config.json", "r") as f:
     config = json.load(f)
 
@@ -22,19 +16,18 @@ def resolve_icon(weather):
         emoji (str): The emoji name
     """
     # Map moon phase data to appropriate emoji
-    # There's only 4 phases that OpenWeatherMap recognises. 
+    # There's only 4 phases that OpenWeatherMap recognises
     if weather['moon_phase'] == 0 or weather['moon_phase'] == 1:
         emoji = "🌑"
-    elif weather['moon_phase'] < 0.25: # FIrst Quarter
+    elif weather['moon_phase'] <= 0.25: # First Quarter
         emoji = "🌒"
-    elif weather['moon_phase'] < 0.5: # Full Moon
+    elif weather['moon_phase'] == 0.5: # Full Moon
         emoji = "🌕"
-    elif weather['moon_phase'] < 0.75: # Last Quarter
+    elif weather['moon_phase'] <= 0.75: # Last Quarter
         emoji = "🌔"
     else:
         emoji = "🌙"
     return emoji
-
 
 def update_custom_status(text, emoji):
     """
@@ -78,26 +71,6 @@ def get_weather_of(lat, lon):
         print("Error: Could not find moon phase in API response.")
         return {}
 
-def generate_custom_status_content(weather):
-    """
-    Generate the custom status content
-
-    Args:
-        weather (str): The weather of the city
-
-    Returns:
-        custom_status_content (str): The final custom status content
-    """
-    # The current time (hours and minutes)
-    now = datetime.now().strftime("%I:%M")
-
-    # Get the weather emoji
-    emoji = resolve_icon(weather)
-
-    # Generate the custom status content
-    custom_status_content = f"Moon phase: {emoji} | {now}"
-    return custom_status_content
-
 def main():
     """
     Main code which calls the other functions
@@ -123,7 +96,7 @@ def main():
             if status["message"] == "401: Unauthorized":
                 print(
                     log_prefix
-                    + " Seems like your Discord personal access token is invalid..."
+                    + " Seems like your Discord personal access token is invalid."
                 )
             else:
                 print(
