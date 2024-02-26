@@ -8,9 +8,9 @@ The status will look similar to the following.
 
 You will need:
 
-- OpenWeatherMap Key.
-- Discord User Token.
-- A lot of patience because moon phases are not speedy nor animated so this script can be run once a day or every other day, whatever suits you.
+- OpenWeatherMap Key
+- Discord User Token
+- A lot of patience because moon phases are not speedy nor animated so this script can be run once a day or every other day, whatever suits you
 
 ## Will I get banned?
 
